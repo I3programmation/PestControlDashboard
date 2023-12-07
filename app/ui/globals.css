@@ -1,0 +1,23 @@
+:root{
+--bg: #F8F8F8;
+--primary: #33CC00;
+--primarySoft: #00FF00;
+--text: #000000;
+--textSoft: #B0B0B0;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
