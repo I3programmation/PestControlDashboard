@@ -17,6 +17,8 @@ import {
   MdOutlineSettings,
   MdHelpCenter,
   MdLogout,
+  MdAutoGraph,
+  MdAdsClick,
 } from "react-icons/md";
 
 const menuItems = [
@@ -36,7 +38,7 @@ const menuItems = [
       {
         title: "Exterminators",
         path: "/dashboard/exterminators",
-        icon: <MdShoppingBag />,
+        icon: <ExterminatorIcon size="15" fill="white" />,
       },
     ],
   },
@@ -46,17 +48,17 @@ const menuItems = [
       {
         title: "Users statistics",
         path: "/dashboard/user-statistics",
-        icon: <MdWork />,
+        icon: <MdAutoGraph />,
       },
       {
         title: "Exterminator statistics",
         path: "/dashboard/user-statistics",
-        icon: <MdWork />,
+        icon: <MdAutoGraph />,
       },
       {
         title: "Clicks calculation",
         path: "/dashboard/clicks-calculation",
-        icon: <MdWork />,
+        icon: <MdAdsClick />,
       },
     ],
   },
@@ -90,11 +92,13 @@ const Sidebar = () => {
           <span className={styles.userTitle}>Administrator</span>
         </div>
       </div>
+
       {/* <ExterminatorIcon fill="white" />
         <AccountIcon fill="white" />
         <LogOutIcon fill="white" />
       <ParametersIcon fill="white" /> */}
-      <ul>
+
+      <ul className={styles.list}>
         {menuItems.map((cat) => (
           <li key={cat.title}>
             <span className={styles.cat}>{cat.title}</span>

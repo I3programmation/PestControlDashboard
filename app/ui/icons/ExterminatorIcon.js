@@ -1,8 +1,8 @@
 // ExterminatorIcon.js
 import React from 'react';
 
-const ExterminatorIcon = ({ fill }) => (
-  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+const ExterminatorIcon = ({size,  fill }) => (
+  <svg width={size} height={size / 0.68} viewBox={`0 0 19 22`} fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M3.66382 10.6382L5.75265 15.738"
       stroke={fill}
