@@ -47,12 +47,12 @@ const menuItems = [
     list: [
       {
         title: "Users statistics",
-        path: "/dashboard/user-statistics",
+        path: "/dashboard/users-statistics",
         icon: <MdAutoGraph />,
       },
       {
         title: "Exterminator statistics",
-        path: "/dashboard/user-statistics",
+        path: "/dashboard/exterminators-statistics",
         icon: <MdAutoGraph />,
       },
       {
@@ -70,11 +70,6 @@ const menuItems = [
         path: "/dashboard/settings",
         icon: <MdOutlineSettings />,
       },
-      {
-        title: "Help",
-        path: "/dashboard/help",
-        icon: <MdHelpCenter />,
-      },
     ],
   },
 ];
@@ -83,10 +78,12 @@ const Sidebar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <PestControlIcon size={60} fill="white" />
+        <PestControlIcon size={65} fill="white" />
+      </div>
+      <div className={styles.separator}>
       </div>
       <div className={styles.user}>
-        <Image className={styles.userImage} src="/noavatar.png" alt="" width="50" height="50" />
+        <Image className={styles.userImage} src="/noavatar.png" alt="" width="45" height="45" />
         <div className={styles.userDetail}>
           <span className={styles.username}>John Doe</span>
           <span className={styles.userTitle}>Administrator</span>
@@ -99,9 +96,10 @@ const Sidebar = () => {
       <ParametersIcon fill="white" /> */}
 
       <ul className={styles.list}>
-        {menuItems.map((cat) => (
+        {menuItems.map((cat, idx) => (
           <li key={cat.title}>
-            <span className={styles.cat}>{cat.title}</span>
+            {menuItems.length-1 !== idx && <span className={styles.cat}>{cat.title}</span>}
+
             {cat.list.map((item) => (
               <MenuLink item={item} key={item.title} />
             ))}
