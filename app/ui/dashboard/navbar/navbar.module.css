@@ -1,0 +1,32 @@
+.container {
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title {
+    text-transform: capitalize;
+}
+.menu {
+    display: flex ;
+    align-items: center;
+    gap: 5px;
+}
+.search{
+    /* border: solid red 1px; */
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 8px;
+}
+
+.search input {
+    border: none;
+    padding: 10px;
+}
+
+.search input:focus {
+    outline: none;
+}
