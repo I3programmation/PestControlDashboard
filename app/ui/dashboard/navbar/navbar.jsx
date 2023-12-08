@@ -9,7 +9,7 @@ const Navbar = () => {
   const pathname = usePathname();
   return (
     <div className={styles.container}>
-      <div className={styles.title}>{pathname.split("/").pop()}</div>
+      <div className={styles.title}>{pathname.split("/").pop().replace(/-/g, ' ')}</div>
       <div className={styles.menu}>
         <FilterIcon size="40" />
         <div className={styles.search}>
