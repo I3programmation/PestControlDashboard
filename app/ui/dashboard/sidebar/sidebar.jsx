@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Tooltip } from "react-tooltip";
 import AccountIcon from "../../icons/AccountIcon";
 import ExterminatorIcon from "../../icons/ExterminatorIcon";
 import LogOutIcon from "../../icons/LogOutIcon";
@@ -28,12 +29,12 @@ const menuItems = [
       {
         title: "Dashboard",
         path: "/dashboard",
-        icon: <MdDashboard size={23}/>,
+        icon: <MdDashboard size={23} />,
       },
       {
         title: "Users",
         path: "/dashboard/users",
-        icon: <MdSupervisedUserCircle size={23}/>,
+        icon: <MdSupervisedUserCircle size={23} />,
       },
       {
         title: "Exterminators",
@@ -48,17 +49,17 @@ const menuItems = [
       {
         title: "Users statistics",
         path: "/dashboard/users-statistics",
-        icon: <MdAutoGraph size={23}/>,
+        icon: <MdAutoGraph size={23} />,
       },
       {
         title: "Exterminator statistics",
         path: "/dashboard/exterminators-statistics",
-        icon: <MdAutoGraph size={23}/>,
+        icon: <MdAutoGraph size={23} />,
       },
       {
         title: "Clicks calculation",
         path: "/dashboard/clicks-calculation",
-        icon: <MdAdsClick size={23}/>,
+        icon: <MdAdsClick size={23} />,
       },
     ],
   },
@@ -68,7 +69,7 @@ const menuItems = [
       {
         title: "Settings",
         path: "/dashboard/settings",
-        icon: <MdOutlineSettings size={25}/>,
+        icon: <MdOutlineSettings size={25} />,
       },
     ],
   },
@@ -134,6 +135,17 @@ const Sidebar = ({ expandSideBar }) => {
               alt=""
               width="32"
               height="32"
+              data-tooltip-id="my-tooltip"
+              data-tooltip-place="right-start"
+              data-tooltip-content="John Doe - Admin"
+            />
+            <Tooltip
+              style={{
+                padding: ".3rem .6rem",
+                borderRadius: ".2rem",
+                backgroundColor: "#123d04",
+              }}
+              id="my-tooltip"
             />
           </div>
           <ul className={styles.list}>
@@ -147,7 +159,7 @@ const Sidebar = ({ expandSideBar }) => {
             ))}
           </ul>
           <button className={styles.logout}>
-            <MdLogout size={23}/>
+            <MdLogout size={23} />
           </button>
         </>
       )}

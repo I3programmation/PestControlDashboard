@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../ui/dashboard/navbar/navbar";
 import Sidebar from "../ui/dashboard/sidebar/sidebar";
 import styles from "../ui/dashboard/dashboard.module.css";
@@ -13,6 +13,10 @@ const Layout = ({ children }) => {
   const handleExpandClick = () => {
     setExpandSidebar(!expandSideBar);
   };
+
+  // useEffect(() => {
+  //   setExpandSidebar()
+  // }, []);
 
   return (
     <div className={styles.container}>
