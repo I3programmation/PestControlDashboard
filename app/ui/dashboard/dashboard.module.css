@@ -1,15 +1,32 @@
 .container {
-    display: flex;
+  display: flex;
+  /* height: 100vh; */
 }
 
 .menu {
-    flex: 1;
-    background-color: var(--primary);
-    color: white;
-    padding: 20px;
+  flex: 2;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 0;
+}
+.icontgglesidebar {
+  color: #123d0444;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  cursor: pointer;
+  padding:0 3px;
 }
 
 .content {
-    flex: 4;
-    padding: 20px;
+  flex: 8;
+  padding: 20px;
+}
+
+.retractedSidebar {
+  width: 80px;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 0;
+  padding-left: 3px;
 }

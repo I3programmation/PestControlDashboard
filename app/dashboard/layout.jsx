@@ -1,12 +1,32 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "../ui/dashboard/navbar/navbar";
 import Sidebar from "../ui/dashboard/sidebar/sidebar";
-import styles from "../ui/dashboard/dashboard.module.css"
+import styles from "../ui/dashboard/dashboard.module.css";
 
-const layout = ({ children }) => {
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
+const Layout = ({ children }) => {
+  const [expandSideBar, setExpandSidebar] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpandSidebar(!expandSideBar);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.menu}>
-        <Sidebar />
+      <div className={expandSideBar ? styles.menu : styles.retractedSidebar}>
+        <div className={styles.icontgglesidebar}>
+          <p onClick={handleExpandClick}>
+            {expandSideBar ? (
+              <BsChevronLeft size={20} />
+            ) : (
+              <BsChevronRight size={20} />
+            )}
+          </p>
+        </div>
+        <Sidebar expandSideBar={expandSideBar} />
       </div>
       <div className={styles.content}>
         <Navbar />
@@ -16,4 +36,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default Layout;

@@ -1,6 +1,6 @@
 const ExterminatorsStatisticsPage = () => {
   return (
-    <div>UserStatistics Page</div>
+    <div>Exterminators Statistics Page</div>
   )
 }
 
