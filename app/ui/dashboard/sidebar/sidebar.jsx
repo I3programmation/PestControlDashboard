@@ -128,26 +128,28 @@ const Sidebar = ({ expandSideBar }) => {
             <PestControlIcon size={45} fill="white" />
           </div>
           <div className={styles.separator}></div>
-          <div className={styles.user}>
+          <div
+            className={styles.user}
+            data-tooltip-id="my-tooltip"
+            data-tooltip-place="right-start"
+            data-tooltip-content="John Doe - Admin"
+          >
             <Image
               className={styles.userImage}
               src="/noavatar.png"
               alt=""
               width="32"
               height="32"
-              data-tooltip-id="my-tooltip"
-              data-tooltip-place="right-start"
-              data-tooltip-content="John Doe - Admin"
-            />
-            <Tooltip
-              style={{
-                padding: ".3rem .6rem",
-                borderRadius: ".2rem",
-                backgroundColor: "#123d04",
-              }}
-              id="my-tooltip"
             />
           </div>
+          <Tooltip
+            style={{
+              padding: ".3rem .6rem",
+              borderRadius: ".2rem",
+              backgroundColor: "#123d04",
+            }}
+            id="my-tooltip"
+          />
           <ul className={styles.list}>
             {menuItems.map((cat, idx) => (
               <li key={cat.title}>
@@ -158,9 +160,22 @@ const Sidebar = ({ expandSideBar }) => {
               </li>
             ))}
           </ul>
-          <button className={styles.logout}>
+          <button
+            className={styles.logout}
+            data-tooltip-id="my-tooltip"
+            data-tooltip-place="right-start"
+            data-tooltip-content="Logout"
+          >
             <MdLogout size={23} />
           </button>
+          <Tooltip
+            style={{
+              padding: ".3rem .6rem",
+              borderRadius: ".2rem",
+              backgroundColor: "#123d04",
+            }}
+            id="my-tooltip"
+          />
         </>
       )}
     </div>
