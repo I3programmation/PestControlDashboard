@@ -7,11 +7,6 @@ import { usePathname } from "next/navigation";
 
 const MenuLink = ({ title = true, item }) => {
   const pathname = usePathname();
-  const tooltipAttrs = title
-    ? ""
-    : `data-tooltip-id="my-tooltip"
-     data-tooltip-place="right-start"
-     data-tooltip-content=${item.title}`;
 
   return (
     <>
