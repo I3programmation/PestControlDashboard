@@ -14,13 +14,11 @@
   display: flex;
   align-items: right;
   justify-content: right;
-  cursor: pointer;
-  padding:0 3px;
+  padding: 0 3px;
 }
 
-.content {
-  flex: 8;
-  padding: 20px;
+.icontgglesidebar p {
+  cursor: pointer;
 }
 
 .retractedSidebar {
@@ -29,4 +27,31 @@
   color: white;
   padding: 10px 0;
   padding-left: 3px;
+}
+.content {
+  flex: 8;
+  padding: 20px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.main {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.side {
+    flex: 1;
 }

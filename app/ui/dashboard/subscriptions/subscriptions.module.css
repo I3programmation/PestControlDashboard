@@ -1,0 +1,45 @@
+.container {
+    background-color: var(--bg2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-weight: 200;
+    color: var(--textSoft);
+}
+
+.table {
+    width: 100%;
+}
+
+.table td {
+    padding: 5px;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.userImage {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.type {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+}
+.userType {
+    background-color: rgba(0, 128, 0, 0.402);
+}
+
+.exterminatorType {
+    background-color: rgba(165, 42, 42, 0.553);
+
+}
