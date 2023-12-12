@@ -6,6 +6,7 @@ import Sidebar from "../ui/dashboard/sidebar/sidebar";
 import styles from "../ui/dashboard/dashboard.module.css";
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Footer from "../ui/dashboard/footer/footer";
 
 const Layout = ({ children }) => {
   const [expandSideBar, setExpandSidebar] = useState(false);
@@ -34,6 +35,7 @@ const Layout = ({ children }) => {
       <div className={styles.content}>
         <Navbar />
         {children}
+        <Footer/>
       </div>
     </div>
   );
