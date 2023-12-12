@@ -1,9 +1,14 @@
-import React from 'react'
+import styles from "@/app/ui/login/login.module.css";
+import LoginForm from "../ui/login/loginForm/loginForm";
+import PestControlIcon from "../ui/icons/Logo_Pest_Control";
 
 const LoginPage = () => {
   return (
-    <div>LoginPage</div>
-  )
-}
+    <div className={styles.container}>
+      <PestControlIcon size={120} fill="var(--primary)" />
+      <LoginForm/>
+    </div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
