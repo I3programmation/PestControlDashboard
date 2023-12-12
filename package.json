@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/material": "^5.14.20",
     "@next/eslint-plugin-next": "14.0.1",
     "next": "14.0.1",
     "react": "18",
