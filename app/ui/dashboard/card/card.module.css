@@ -2,36 +2,37 @@
   background-color: var(--bg2);
   /* background-color: #e0e0e0; */
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
   display: flex;
   gap: 20px;
   cursor: pointer;
+  /* box-shadow: rgba(0, 0, 0, 0.10) 0px 1px 4px; */
 }
 
 .container:hover {
-    background-color: #dcdcdc;
+  background-color: #dcdcdc;
 }
 
 .texts {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .number {
-    font-size: 24px;
-    font-weight: 500;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .detail {
-    font-size: 14px;
-    font-weight: 300;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .positive {
-    color: rgb(51, 190, 51);
+  color: rgb(51, 190, 51);
 }
 .negative {
-    color: red;
+  color: red;
 }

@@ -10,6 +10,9 @@
   padding: 10px 0;
 }
 .icontgglesidebar {
+  z-index: 9999;
+  top: 10px;
+  position: sticky;
   color: #123d0444;
   display: flex;
   align-items: right;
