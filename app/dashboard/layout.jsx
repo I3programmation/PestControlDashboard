@@ -16,7 +16,8 @@ const Layout = ({ children }) => {
   };
 
   // useEffect(() => {
-  // }, []);
+  //   alert("clicked side button")
+  // }, [expandSideBar]);
 
   return (
     <div className={styles.container}>
@@ -32,7 +33,7 @@ const Layout = ({ children }) => {
         </div>
         <Sidebar expandSideBar={expandSideBar} />
       </div>
-      <div className={styles.content}>
+      <div key={expandSideBar ? 'expanded' : 'retracted'} className={styles.content}>
         <Navbar />
         {children}
         <Footer/>
