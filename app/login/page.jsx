@@ -5,7 +5,7 @@ import PestControlIcon from "../ui/icons/Logo_Pest_Control";
 const LoginPage = () => {
   return (
     <div className={styles.container}>
-      <PestControlIcon size={120} fill="var(--primary)" />
+      <PestControlIcon size={110} fill="var(--primary)" />
       <LoginForm/>
     </div>
   );
