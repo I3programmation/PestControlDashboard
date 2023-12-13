@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Navbar from "../ui/dashboard/navbar/navbar";
 import Sidebar from "../ui/dashboard/sidebar/sidebar";
 import styles from "../ui/dashboard/dashboard.module.css";
@@ -10,6 +11,7 @@ import Footer from "../ui/dashboard/footer/footer";
 
 const Layout = ({ children }) => {
   const [expandSideBar, setExpandSidebar] = useState(false);
+  const pathname = usePathname();
 
   const handleExpandClick = () => {
     setExpandSidebar(!expandSideBar);
@@ -33,10 +35,18 @@ const Layout = ({ children }) => {
         </div>
         <Sidebar expandSideBar={expandSideBar} />
       </div>
-      <div key={expandSideBar ? 'expanded' : 'retracted'} className={styles.content}>
-        <Navbar />
+      <div
+        key={expandSideBar ? "expanded" : "retracted"}
+        className={styles.content}
+      >
+        {pathname.split("/").pop() === "users" ||
+        pathname.split("/").pop() === "exterminators" ? (
+          ""
+        ) : (
+          <Navbar />
+        )}
         {children}
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );

@@ -1,7 +1,12 @@
+import Navbar from "@/app/ui/dashboard/navbar/navbar";
+
 const ExterminatorsPage = () => {
   return (
-    <div>ExterminatorsPage</div>
-  )
-}
+    <>
+      <Navbar search={true} />
+      <div>ExterminatorsPage</div>
+    </>
+  );
+};
 
-export default ExterminatorsPage
+export default ExterminatorsPage;
