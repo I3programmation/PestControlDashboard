@@ -8,6 +8,7 @@
   background-color: var(--primary);
   color: white;
   padding: 10px 0;
+  min-height: 100vh;
 }
 .icontgglesidebar {
   z-index: 9999;

@@ -5,7 +5,7 @@ import styles from "./navbar.module.css";
 import { MdSearch } from "react-icons/md";
 import FilterIcon from "../../icons/FilterIcon";
 
-const Navbar = ({ search = false }) => {
+const Navbar = ({ search = false, searchPh = "search..." }) => {
   const pathname = usePathname();
   return (
     <div className={styles.container}>
@@ -19,7 +19,7 @@ const Navbar = ({ search = false }) => {
             <MdSearch />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder={searchPh}
               className={styles.input}
             />
           </div>

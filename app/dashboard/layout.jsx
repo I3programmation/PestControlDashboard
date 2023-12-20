@@ -9,17 +9,13 @@ import styles from "../ui/dashboard/dashboard.module.css";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Footer from "../ui/dashboard/footer/footer";
 
-const Layout = ({ children }) => {
+const DashboardLayout = ({ children }) => {
   const [expandSideBar, setExpandSidebar] = useState(false);
   const pathname = usePathname();
 
   const handleExpandClick = () => {
     setExpandSidebar(!expandSideBar);
   };
-
-  // useEffect(() => {
-  //   alert("clicked side button")
-  // }, [expandSideBar]);
 
   return (
     <div className={styles.container}>
@@ -52,4 +48,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default DashboardLayout;

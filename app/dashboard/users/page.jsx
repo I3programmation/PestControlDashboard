@@ -1,3 +1,4 @@
+import { getUsersByUserType } from "@/app/lib/firebase/firebase";
 import Navbar from "@/app/ui/dashboard/navbar/navbar";
 import Search from "@/app/ui/dashboard/search/search";
 import styles from "@/app/ui/dashboard/users/users.module.css";
@@ -6,53 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { MdCreate, MdDelete } from "react-icons/md";
 
-const UsersPage = () => {
-  const DATA = [
-    {
-      ID: 2134,
-      Name: "David Corby",
-      Email: "david.corby@gmail.com",
-      CreatedAt: "23/01/2023",
-      Role: "User",
-      Status: "active",
-    },
-    {
-      ID: 789,
-      Name: "Alice Johnson",
-      Email: "alice.johnson@example.com",
-      CreatedAt: "15/02/2023",
-      Role: "Admin",
-      Status: "inactive",
-    },
-    {
-      ID: 456,
-      Name: "Bob Smith",
-      Email: "bob.smith@example.com",
-      CreatedAt: "10/03/2023",
-      Role: "User",
-      Status: "active",
-    },
-    {
-      ID: 123,
-      Name: "Eva Rodriguez",
-      Email: "eva.rodriguez@example.com",
-      CreatedAt: "05/04/2023",
-      Role: "User",
-      Status: "inactive",
-    },
-    {
-      ID: 987,
-      Name: "Sophia Lee",
-      Email: "sophia.lee@example.com",
-      CreatedAt: "18/05/2023",
-      Role: "Admin",
-      Status: "active",
-    },
-  ];
+const UsersPage = async ({ searchParams }) => {
+// const q = searchParams?.q || "";
+//   const page = searchParams?.page || 1;
+  const users = await getUsersByUserType("user");
 
   return (
     <>
-      <Navbar search={true} />
+      <Navbar search={true} searchPh="Search for a user..."/>
       <div className={styles.container}>
         {/* <div className={styles.top}>
         <Search placeholder="Search for a user..." />
@@ -65,17 +27,17 @@ const UsersPage = () => {
             <tr>
               <td>Name</td>
               <td>Email</td>
-              <td>Created at</td>
-              <td>Role</td>
-              <td>Status</td>
+              <td>Country</td>
+              <td>Province</td>
+              <td>City</td>
               <td></td>
             </tr>
           </thead>
           <tbody>
-            {DATA.map((user) => (
+            {users.map((user) => (
               <>
                 <tr className={styles.spacer}></tr>
-                <tr key={user.ID} className={styles.userRow}>
+                <tr key={user.id} className={styles.userRow}>
                   <td>
                     <div className={styles.user}>
                       <Image
@@ -85,16 +47,16 @@ const UsersPage = () => {
                         height={40}
                         className={styles.userImage}
                       />
-                      {user.Name}
+                      {user.firstName+" "+user.lastName}
                     </div>
                   </td>
-                  <td>{user.Email}</td>
-                  <td>{user.CreatedAt}</td>
-                  <td>{user.Role}</td>
-                  <td>{user.Status}</td>
+                  <td>{user.email}</td>
+                  <td>{user.country}</td>
+                  <td>{user.province}</td>
+                  <td>{user.city}</td>
                   <td>
                     <div className={styles.buttons}>
-                      <Link href="">
+                      <Link href={`/dashboard/users/${user.id}`}>
                         <IconButton
                           className={`${styles.button} ${styles.view}`}
                           aria-label="View"

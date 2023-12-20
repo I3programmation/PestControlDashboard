@@ -1,0 +1,81 @@
+.container {
+    /* background-color: var(--bg2); */
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .addButton {
+    padding: 10px;
+    background-color: var(--primary);
+    color: var(--textSoft2);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  .exterminatorRow {
+    /* background-color: var(--bg2); */
+    background-color: white;
+  }
+  .spacer {
+    height: 5px;
+  }
+  .table td {
+    padding: 10px;
+  }
+
+  .table td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .table td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .exterminator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .exterminatorImage {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .button {
+    padding: 0px;
+  }
+
+  .view {
+    /* background-color: #008080; */
+  }
+  .delete {
+    /* background-color: #dc143c; */
+  }
+
+  .pagination {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+  }
