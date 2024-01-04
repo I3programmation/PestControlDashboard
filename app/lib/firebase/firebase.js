@@ -11,6 +11,7 @@ import {
     query,
     where,
     addDoc,
+    startAfter
 } from "firebase/firestore";
 import {
     createUserWithEmailAndPassword,
@@ -261,6 +262,19 @@ const getProfileImageUrl = async (refImage) => {
     }
 };
 
+const getUserImageUrl = async (userId, refImage) => {
+    const parentRef = ref(storage, `user/${userId}/profileImage`);
+    // console.log("id " + userId);
+    if (typeof refImage === "string" && refImage.length > 0) {
+        const imageUrl = await getDownloadURL(ref(parentRef, refImage));
+        return imageUrl;
+    } else {
+        return '/noavatar.png';
+    }
+};
+
+
+
 const getExterminatorImage = async (email, refImage) => {
     const userId = await getUserIdByEmail(email);
     const parentRef = ref(storage, `user/${userId}/profileImage`);
@@ -308,33 +322,65 @@ const deleteProfileImage = (refImage) => {
 };
 
 const getUsersByUserType = async (userType) => {
-    const querySnapshot = await getDocs(
-        query(userRef, where("userType", "==", userType))
-    );
+    try {
+        const q = query(userRef, where("userType", "==", userType));
+        const querySnapshot = await getDocs(q);
 
-    let users = [];
-
-    querySnapshot.forEach(async (doc) => {
-        const userData = doc.data();
-        const parentRef = ref(storage, `user/${doc.id}/profileImage`);
-        let imgUrl;
-        if (doc.data().image && doc.data().image !== "") {
-            imgUrl = await getDownloadURL(ref(parentRef, doc.data().image));
-        } else {
-            imgUrl = "";
-        }
-        userData.imgUrl = imgUrl;
-        userData.id = doc.id;
-        // users[users.length - 1].imageUrl = imgUrl;
-        // console.log(doc.data().image)
-        // users[users.length - 1].id = doc.id;
-        users.push(userData);
-
-    });
-
-    console.log(users);
-    return users;
+        const users = [];
+        await Promise.all(querySnapshot.docs.map(async (doc) => {
+            const imgRef = doc.data().image;
+            const imageUrl = await getUserImageUrl(doc.id, imgRef);
+            // console.log(imageUrl)
+            users.push({ id: doc.id, imageUrl, ...doc.data() });
+        }));
+        return users;
+    } catch (error) {
+        console.error("Error getting users by user type:", error);
+        throw error;
+    }
 };
+
+
+// get users results
+const getUsersByUserTypePaginated = async (userType, pageSize = 10, startAfterDoc = null) => {
+    try {
+        let baseQuery = query(userRef, where("userType", "==", userType));
+
+        if (startAfterDoc) {
+            baseQuery = query(userRef, where("userType", "==", userType), startAfter(startAfterDoc));
+        }
+
+        const querySnapshot = await getDocs(baseQuery.limit(pageSize));
+
+        const users = [];
+        await Promise.all(querySnapshot.forEach(async (doc) => {
+            const imgRef = doc.data().image;
+            const imageUrl = await getUserImageUrl(doc.id, imgRef);
+            users.push({ id: doc.id, imageUrl, ...doc.data() });
+        }));
+
+        return {
+            data: users,
+            nextPage: querySnapshot.docs.length === pageSize
+                ? querySnapshot.docs[querySnapshot.docs.length - 1]
+                : null,
+        };
+    } catch (error) {
+        console.error("Error getting users by user type:", error);
+        throw error;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
 
 const getUser = async () => {
     const docRef = doc(userRef, auth.currentUser.uid);
@@ -399,7 +445,8 @@ const getCommentsByExterminatorEmail = async (exterminatorEmail) => {
 
 const getDocumentById = async (collectionName, docId) => {
     const docSnap = await getDoc(doc(db, collectionName, docId));
-
+    // const imageUrl = await getUserImageUrl(docId, docSnap.data().image);
+    // console.log(docSnap.data().image);
     if (docSnap.exists()) {
         return docSnap.data();
     } else {
@@ -426,6 +473,7 @@ const updateRating = async (userId, user, newRating) => {
 export {
     getUsers,
     getUsersByUserType,
+    getUsersByUserTypePaginated,
     updateUserDB,
     deleteUserDB,
     createNewUser,
