@@ -1,27 +1,47 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getUsersByUserType } from "@/app/lib/firebase/firebase";
-import Navbar from "@/app/ui/dashboard/navbar/navbar";
-import styles from "@/app/ui/dashboard/users/users.module.css";
-import { IconButton, Pagination } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getUsersWithPagination,
+  getUsersByUserType,
+} from "@/app/firebase/actions";
+
+import { IconButton, Pagination } from "@mui/material";
 import { MdCreate, MdDelete } from "react-icons/md";
+import Navbar from "@/app/ui/dashboard/navbar/navbar";
+
+import styles from "@/app/ui/dashboard/users/users.module.css";
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([]);
+  const PageSize = 8;
+  const [data, setData] = useState([]);
+  const [pagesCount, setPagesCount] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastVisible, setLastVisible] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       setIsLoading(true);
-      const usersData = await getUsersByUserType("user");
-      setUsers(usersData);
+      const result = await getUsersWithPagination(
+        "user",
+        currentPage,
+        PageSize,
+        lastVisible
+      );
+      setData(result.data);
+      setLastVisible(result.lastDoc);
+      setPagesCount(result.pagesCount);
       setIsLoading(false);
-    }
+    };
     fetchData();
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+  };
   return (
     <>
       <Navbar search={true} searchPh="Search for a user..." />
@@ -31,7 +51,7 @@ const UsersPage = () => {
             <h2>Loading...</h2>
           </div>
         )}
-        {!isLoading && users.length > 0 &&(
+        {!isLoading && data.length > 0 && (
           <>
             <table className={styles.table} rules="none">
               <thead>
@@ -45,7 +65,7 @@ const UsersPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
+                {data.map((user) => (
                   <tr key={user.id} className={styles.userRow}>
                     <td>
                       <div className={styles.user}>
@@ -87,11 +107,17 @@ const UsersPage = () => {
               </tbody>
             </table>
             <div className={styles.pagination}>
-              <Pagination count={4} variant="outlined" shape="rounded" />
+              <Pagination
+                count={pagesCount}
+                page={currentPage}
+                onChange={handlePageChange}
+                variant="outlined"
+                shape="rounded"
+              />
             </div>
           </>
         )}
-        {!isLoading && users.length === 0 && (
+        {!isLoading && data.length === 0 && (
           <div style={{ textAlign: "center" }}>
             <h2>There are no users yet.</h2>
           </div>

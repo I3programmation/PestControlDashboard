@@ -1,6 +1,4 @@
-// import { updateUser } from "@/app/lib/actions";
-// import { fetchUser } from "@/app/lib/data";
-import { getDocumentById } from "@/app/lib/firebase/firebase";
+import { getDocumentById } from "@/app/firebase/actions";
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import { FormControl, TextField } from "@mui/material";
 import Image from "next/image";
