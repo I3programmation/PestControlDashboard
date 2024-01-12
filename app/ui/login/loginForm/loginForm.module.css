@@ -28,3 +28,8 @@
     cursor: pointer;
     border-radius: 5px;
   }
+
+  .errorMsg {
+    color: red;
+    text-align: center;
+  }

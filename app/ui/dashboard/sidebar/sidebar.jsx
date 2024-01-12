@@ -75,7 +75,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = ({ expandSideBar }) => {
+const Sidebar = ({ expandSideBar, handleSignOut }) => {
   return (
     <div className={styles.container}>
       {expandSideBar ? (
@@ -165,6 +165,7 @@ const Sidebar = ({ expandSideBar }) => {
             data-tooltip-id="my-tooltip"
             data-tooltip-place="right-start"
             data-tooltip-content="Logout"
+            onClick={handleSignOut}
           >
             <MdLogout size={23} />
           </button>
