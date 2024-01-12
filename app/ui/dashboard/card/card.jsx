@@ -1,6 +1,5 @@
 import { MdSupervisedUserCircle } from "react-icons/md";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-
+import { IoMdArrowDropdown, IoMdArrowDropup, IoMdRemove } from "react-icons/io";
 import styles from "./card.module.css";
 
 const Card = ({ item }) => {
@@ -13,15 +12,17 @@ const Card = ({ item }) => {
           {item.number}
           {item.change > 0 ? (
             <IoMdArrowDropup size={30} color="green" />
-          ) : (
+          ) : item.change < 0 ? (
             <IoMdArrowDropdown size={30} color="red" />
+          ) : (
+            <IoMdRemove size={20} color="gray" />
           )}
         </span>
         <span className={styles.detail}>
-          <span className={item.change > 0 ? styles.positive : styles.negative}>
-            {item.change}%
+          <span className={item.change > 0 ? styles.positive : item.change < 0 ? styles.negative : styles.neutral}>
+            {item.change !== 0 ? `${item.change}%` : "No Change"}
           </span>{" "}
-          {item.change > 0 ? "more" : "less"} than previous week
+          {item.change > 0 ? "more than previous week" : item.change < 0 ? "less than previous week" : ""}
         </span>
       </div>
     </div>

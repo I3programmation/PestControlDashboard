@@ -145,12 +145,12 @@ export const cards = [
         id: 2,
         title: "Total Companies",
         number: 8.236,
-        change: -2,
+        change: 0,
     },
     {
         id: 3,
         title: "Subscriptions",
         number: 6.642,
-        change: 18,
+        change: -1,
     },
 ];

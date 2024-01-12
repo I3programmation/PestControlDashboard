@@ -42,9 +42,11 @@ const DashboardLayout = ({ children }) => {
   return (
     <>
       {loading && (
-        <Box sx={{ display: "flex" }}>
-          <CircularProgress />
-        </Box>
+        <div style={{ marginRight: "auto",  marginLeft: "auto"}}>
+          <Box sx={{ display: "flex" }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       {!loading && user && (
         <div className={styles.container}>
