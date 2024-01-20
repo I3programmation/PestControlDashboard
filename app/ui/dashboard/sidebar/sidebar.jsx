@@ -1,22 +1,13 @@
 import Image from "next/image";
 import { Tooltip } from "react-tooltip";
-import AccountIcon from "../../icons/AccountIcon";
 import ExterminatorIcon from "../../icons/ExterminatorIcon";
-import LogOutIcon from "../../icons/LogOutIcon";
 import PestControlIcon from "../../icons/Logo_Pest_Control";
-import ParametersIcon from "../../icons/Parameters";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
 import {
   MdDashboard,
   MdSupervisedUserCircle,
-  MdShoppingBag,
-  MdAttachMoney,
-  MdWork,
-  MdAnalytics,
-  MdPeople,
   MdOutlineSettings,
-  MdHelpCenter,
   MdLogout,
   MdAutoGraph,
   MdAdsClick,
