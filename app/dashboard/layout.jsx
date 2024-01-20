@@ -71,7 +71,7 @@ const DashboardLayout = ({ children }) => {
             key={expandSideBar ? "expanded" : "retracted"}
             className={styles.content}
           >
-            {pathname.split("/").pop() === "dashboard" ? <Navbar /> : ""}
+            {pathname.split("/").pop() === "dashboard" || pathname.split("/").pop() === "users-statistics" || pathname.split("/").pop() === "exterminators-statistics" ? <Navbar /> : ""}
             {children}
             <Footer />
           </div>

@@ -110,9 +110,6 @@ const getUsersWithPagination = async (userType, page, pageSize, lastVisible) => 
 };
 
 
-
-
-
 const getDocumentById = async (collectionName, docId) => {
     const docSnap = await getDoc(doc(db, collectionName, docId));
     if (docSnap.exists()) {
@@ -133,17 +130,17 @@ const getUserImageUrl = async (userId, refImage) => {
     }
 };
 
-export { getUsersByUserType, getUsersWithPagination,  getDocumentById }
+export { getUsersByUserType, getUsersWithPagination, getDocumentById }
 export const cards = [
     {
         id: 1,
-        title: "Total Truckers",
+        title: "Total Users",
         number: 10.928,
         change: 12,
     },
     {
         id: 2,
-        title: "Total Companies",
+        title: "Total Exterminators",
         number: 8.236,
         change: 0,
     },
@@ -154,3 +151,58 @@ export const cards = [
         change: -1,
     },
 ];
+export const cardsUsersStats = [
+    {
+        id: 1,
+        title: "Total Users",
+        number: 10.928,
+        change: 12,
+    },
+    {
+        id: 2,
+        title: "Active Users",
+        number: 9.255,
+        change: 0,
+    },
+    {
+        id: 3,
+        title: "Inactive Users",
+        number: 9.255,
+        change: 0,
+    },
+    {
+        id: 4,
+        title: "Subscriptions",
+        number: 6.642,
+        change: 12,
+    },
+];
+
+// Dummy data for Age Distribution
+export const ageDistributionData =[
+    {
+      age: '18-24',
+      male: 4000,
+      female: 2400,
+    },
+    {
+      age: '25-34',
+      male: 3000,
+      female: 1398,
+    },
+    {
+      age: '35-44',
+      male: 2000,
+      female: 1800,
+    },
+    {
+      age: '45-54',
+      male: 3780,
+      female: 2908,
+    },
+    {
+      age: '55+',
+      male: 1890,
+      female: 800,
+    },
+  ];
