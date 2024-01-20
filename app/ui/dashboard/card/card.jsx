@@ -19,10 +19,11 @@ const Card = ({ item }) => {
           )}
         </span>
         <span className={styles.detail}>
-          <span className={item.change > 0 ? styles.positive : item.change < 0 ? styles.negative : styles.neutral}>
-            {item.change !== 0 ? `${item.change}%` : "No Change"}
+          <span className={item.change > 0 ? styles.positive : item.change < 0 ? styles.negative: styles.neutral}>
+            {`${item.change}%`}
+            {/* {item.change !== 0 && `${item.change}%`} */}
           </span>{" "}
-          {item.change > 0 ? "more than previous week" : item.change < 0 ? "less than previous week" : ""}
+          {item.change > 0 ? "more than previous week" : item.change < 0 ? "less than previous week" : "No Change"}
         </span>
       </div>
     </div>
