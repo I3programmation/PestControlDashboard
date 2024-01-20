@@ -1,0 +1,13 @@
+.container {
+    /* z-index: 1; */
+    height: 400px;
+    background-color: var(--bg2);
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .title {
+    margin-bottom: 15px;
+    font-weight: 200;
+    color: var(--textSoft);
+}

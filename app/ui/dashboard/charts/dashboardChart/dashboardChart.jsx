@@ -7,10 +7,11 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  CartesianGrid,
 } from "recharts";
-import styles from "./chart.module.css";
+import styles from "./dashboardChart.module.css";
 
-const Chart = () => {
+const DashboardChart = () => {
   const data = [
     {
       name: "Sun",
@@ -64,6 +65,7 @@ const Chart = () => {
             bottom: 5,
           }}
         >
+          <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip
@@ -92,4 +94,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default DashboardChart;
