@@ -66,7 +66,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = ({ expandSideBar, handleSignOut }) => {
+const Sidebar = ({ expandSideBar, handleSignOut, userData }) => {
   return (
     <div className={styles.container}>
       {expandSideBar ? (
@@ -78,14 +78,20 @@ const Sidebar = ({ expandSideBar, handleSignOut }) => {
           <div className={styles.user}>
             <Image
               className={styles.userImage}
-              src="/noavatar.png"
+              src={userData.imageUrl}
               alt=""
               width="45"
               height="45"
             />
             <div className={styles.userDetail}>
-              <span className={styles.username}>John Doe</span>
-              <span className={styles.userTitle}>Administrator</span>
+              <span className={styles.username}>
+                {userData && userData.firstName + " " + userData.lastName}
+              </span>
+              <span className={styles.userTitle}>
+                {userData && userData.userType == "admin"
+                  ? "Administrator"
+                  : "Undefined"}
+              </span>
             </div>
           </div>
           {/* <ExterminatorIcon fill="white" />
@@ -108,7 +114,7 @@ const Sidebar = ({ expandSideBar, handleSignOut }) => {
               </li>
             ))}
           </ul>
-          <button className={styles.logout}>
+          <button className={styles.logout} onClick={handleSignOut}>
             <MdLogout size={23} />
             Logout
           </button>
@@ -123,11 +129,18 @@ const Sidebar = ({ expandSideBar, handleSignOut }) => {
             className={styles.user}
             data-tooltip-id="my-tooltip"
             data-tooltip-place="right-start"
-            data-tooltip-content="John Doe - Admin"
+            data-tooltip-content={
+              userData &&
+              userData.firstName +
+                " " +
+                userData.lastName +
+                " - " +
+                (userData.userType === "admin" && "Administrator")
+            }
           >
             <Image
               className={styles.userImage}
-              src="/noavatar.png"
+              src={userData.imageUrl}
               alt=""
               width="32"
               height="32"

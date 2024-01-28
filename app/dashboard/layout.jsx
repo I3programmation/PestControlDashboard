@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDocument } from "react-firebase-hooks/firestore";
 import { auth } from "@/app/firebase/config";
 import { signOut } from "firebase/auth";
+import { getDocumentById } from "../firebase/actions";
 
 import Navbar from "../ui/dashboard/navbar/navbar";
 import Sidebar from "../ui/dashboard/sidebar/sidebar";
@@ -18,14 +20,24 @@ import Footer from "../ui/dashboard/footer/footer";
 const DashboardLayout = ({ children }) => {
   const [expandSideBar, setExpandSidebar] = useState(false);
   const [user, loading] = useAuthState(auth);
+  const uid = user && user.uid;
+  const [userData, setUserData] = useState({});
+
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
+    if (!loading && user) {
+      const fetchUserData = async () => {
+        const res = await getDocumentById("users", uid);
+        setUserData(res);
+      };
+      fetchUserData();
+    }
     if (!loading && !user) {
       router.push("/login");
     }
-  }, [user, router, loading]);
+  }, [user, uid, router, loading]);
 
   const handleExpandClick = () => {
     setExpandSidebar(!expandSideBar);
@@ -40,16 +52,21 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       {loading && (
-        <div style={{ marginRight: "auto",  marginLeft: "auto"}}>
+        <div
+          style={{
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
+        >
           <Box sx={{ display: "flex" }}>
             <CircularProgress />
           </Box>
         </div>
       )}
       {!loading && user && (
-        <div className={styles.container}>
+        <>
           <div
             className={expandSideBar ? styles.menu : styles.retractedSidebar}
           >
@@ -65,19 +82,26 @@ const DashboardLayout = ({ children }) => {
             <Sidebar
               expandSideBar={expandSideBar}
               handleSignOut={handleSignOut}
+              userData={userData}
             />
           </div>
           <div
             key={expandSideBar ? "expanded" : "retracted"}
             className={styles.content}
           >
-            {pathname.split("/").pop() === "dashboard" || pathname.split("/").pop() === "users-statistics" || pathname.split("/").pop() === "exterminators-statistics" ? <Navbar /> : ""}
+            {pathname.split("/").pop() === "dashboard" ||
+            pathname.split("/").pop() === "users-statistics" ||
+            pathname.split("/").pop() === "exterminators-statistics" ? (
+              <Navbar />
+            ) : (
+              ""
+            )}
             {children}
             <Footer />
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 
