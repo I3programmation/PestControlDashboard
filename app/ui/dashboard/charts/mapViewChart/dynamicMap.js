@@ -5,15 +5,12 @@ import "leaflet-defaulticon-compatibility";
 
 import styles from './DynamicMap.module.css';
 
-
-const DEFAULT_CENTER = [45.508888, -73.561668];
-const DynamicMap = ({ data }) => {
-
+const DynamicMap = ({ data, loc }) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Geographical Distribution</h2>
       <MapContainer
-        center={DEFAULT_CENTER}
+        center={[45.508888, -73.561668]}
         zoom={10}
         scrollWheelZoom={false}
         style={{ height: "88%", width: "100%", borderRadius: "10px" }}
@@ -24,9 +21,11 @@ const DynamicMap = ({ data }) => {
         />
         {data.map((item, indx) =>
         (
-          <Marker key={item.id} position={[item.latitude.toFixed(4), item.longitude.toFixed(4)]}  animate={true}>
-            <Popup>Client Name: {item.firstName}</Popup>
-            {console.log(item.latitude.toFixed(4))}
+          <Marker key={item.id} position={[item.latitude.toFixed(4), item.longitude.toFixed(4)]} animate={true}>
+            <Popup>
+              Client Name: {item.firstName + " " + item.lastName}
+
+            </Popup>
           </Marker>
         )
         )}

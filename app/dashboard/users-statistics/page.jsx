@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// Mandatory for DynamicMap to work
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { cardsUsersStats, getUsersByUserType } from "@/app/firebase/actions";
+import { getDataStats, getUsersByUserType } from "@/app/firebase/actions";
 
 import Card from "@/app/ui/dashboard/card/card";
 import AgeDistributionChart from "@/app/ui/dashboard/charts/ageChart/agechart";
@@ -21,14 +22,33 @@ const DynamicMap = dynamic(
 
 const UsersStatisticsPage = () => {
   const [data, setData] = useState([]);
+  const [usersStats, setStats] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [defaultLoc, setDefaultLoc] = useState([]);
 
+  const getLocation = () => { // to get user position from browser
+    setDefaultLoc([45.508888, -73.561668]);
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       console.log(position);
+    //       setDefaultLoc([position.coords.latitude, position.coords.longitude]);
+    //     },
+    //     (error) => {
+    //       alert(error);
+    //       setDefaultLoc([45.508888, -73.561668]);
+    //     }
+    //   );
+    // }
+  };
   useEffect(() => {
+    getLocation();
     const fetchData = async () => {
       setIsLoading(true);
+      const stats = await getDataStats("user");
+      setStats(stats);
       const result = await getUsersByUserType("user");
       setData(result);
-      // console.log(result);
       setIsLoading(false);
     };
     fetchData();
@@ -36,17 +56,17 @@ const UsersStatisticsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.cards}>
-        {cardsUsersStats.map((item) => (
-          <Card item={item} key={item.id} />
+        {usersStats.map((item, idx) => (
+          <Card item={item} key={idx} />
         ))}
       </div>
       <div className={styles.demographics}>
         <div className={styles.main}>
-          <AgeDistributionChart />
+          <ProvinceSubscriptionsChart />
+          {/* <AgeDistributionChart /> */}
         </div>
         <div className={styles.side}>
-          {/* <ProvinceSubscriptionsChart /> */}
-          {!isLoading && <DynamicMap data={data} />}
+          <DynamicMap data={data} loc={defaultLoc}/>
         </div>
       </div>
     </div>
