@@ -91,7 +91,9 @@ const DashboardLayout = ({ children }) => {
           >
             {pathname.split("/").pop() === "dashboard" ||
             pathname.split("/").pop() === "users-statistics" ||
-            pathname.split("/").pop() === "exterminators-statistics" ? (
+            pathname.split("/").pop() === "exterminators-statistics" ||
+            pathname.split("/").pop() === "clicks-calculation" ||
+            pathname.split("/").pop() === "settings" ? (
               <Navbar />
             ) : (
               ""
