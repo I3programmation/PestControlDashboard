@@ -5,15 +5,15 @@ import Image from "next/image";
 
 const SingleUserPage = async ({ params }) => {
   const { id } = params;
-    const user = await getDocumentById("users", id);
-
+  const user = await getDocumentById("users", id);
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
+          {/* {console.log(user)} */}
           <Image src={user.imageUrl || "/noavatar.png"} alt="" fill />
         </div>
-        {user.firstName+" "+user.lastName}
+        {user.firstName + " " + user.lastName}
       </div>
       <div className={styles.formContainer}>
         {/* <form action={updateUser} className={styles.form}> */}
@@ -28,8 +28,8 @@ const SingleUserPage = async ({ params }) => {
           </FormControl>
           <FormControl>
             <TextField
-              id="firstName"
-              label="First Name"
+              id="lasttName"
+              label="Last Name"
               defaultValue={user.lastName}
             />
           </FormControl>

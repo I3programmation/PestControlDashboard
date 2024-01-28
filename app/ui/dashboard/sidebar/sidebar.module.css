@@ -7,7 +7,7 @@
   text-align: center;
 }
 .separator {
-  border: solid rgba(255, 255, 255, 0.183) 1px;
+  border: solid var(--primaryBorder) 1px;
   width: 85%;
   margin: 10px auto;
 }
@@ -21,6 +21,7 @@
 }
 
 .userImage {
+  border: solid var(--primaryBorder) 1px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;

@@ -41,9 +41,9 @@ const Subscriptions = () => {
           </tr>
         </thead>
         <tbody>
-          {USERS.map((item) => (
+          {USERS.map((item, idx) => (
             <>
-              <tr>
+              <tr key={idx}>
                 <td>
                   <div className={styles.user}>
                     <Image
